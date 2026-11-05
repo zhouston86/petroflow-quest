@@ -9,7 +9,7 @@ const keys = {}, pressed = {};
 const LEFT = ['ArrowLeft', 'KeyA', 'PadLeft'], RIGHT = ['ArrowRight', 'KeyD', 'PadRight'];
 const JUMP = ['Space', 'KeyZ', 'PadJump'];
 const UP = ['ArrowUp', 'KeyW', 'PadUp'];
-const SHOOT = ['KeyX', 'KeyJ', 'KeyK', 'KeyC', 'ShiftLeft', 'ShiftRight', 'PadShoot'];
+const SHOOT = ['KeyX', 'KeyJ', 'KeyK', 'KeyC', 'ShiftLeft', 'ShiftRight', 'PadShoot', 'TouchShootUp'];
 const CONFIRM = ['Enter', 'Space', 'KeyZ', 'PadStart', 'PadJump'];
 const down = a => a.some(k => keys[k]);
 const hit = a => a.some(k => pressed[k]);
@@ -160,8 +160,11 @@ function playerShoot() {
   if (shots.filter(s => !s.hostile).length >= C.shots + (pl.triple > 0 ? 2 : 0)) return;
   pl.cd = C.cd;
   Sound.sfx('shoot');
-  const up = down(UP);
-  const bx = up ? 0.707 * pl.facing : pl.facing, by = up ? -0.707 : 0;
+  // the touch SHOOT UP button fires straight up, or diagonally while moving
+  const tu = !!keys.TouchShootUp, moving = down(LEFT) || down(RIGHT);
+  const up = down(UP) || tu;
+  const vert = tu && !moving;
+  const bx = vert ? 0 : (up ? 0.707 * pl.facing : pl.facing), by = up ? (vert ? -1 : -0.707) : 0;
   const base = Math.atan2(by, bx);
   for (const a of (pl.triple > 0 ? [-0.22, 0, 0.22] : [0])) {
     const dx = Math.cos(base + a), dy = Math.sin(base + a);

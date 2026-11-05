@@ -8,7 +8,7 @@ let TOUCH = matchMedia('(pointer: coarse)').matches || /[?&]touch=1/.test(locati
   ui.innerHTML =
     '<div id="dpad"><div class="arrow l">&#9664;</div><div class="arrow r">&#9654;</div></div>' +
     '<div id="tbtns">' +
-    '<div class="tb" id="tb-up" data-k="ArrowUp">&#9650;<small>AIM</small></div>' +
+    '<div class="tb" id="tb-up" data-k="TouchShootUp">&#9650;<small>SHOOT UP</small></div>' +
     '<div class="tb" id="tb-shoot" data-k="KeyX">B<small>SHOOT</small></div>' +
     '<div class="tb" id="tb-jump" data-k="KeyZ">A<small>JUMP</small></div>' +
     '</div>' +
@@ -71,10 +71,10 @@ let TOUCH = matchMedia('(pointer: coarse)').matches || /[?&]touch=1/.test(locati
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('gesturestart', e => e.preventDefault());
 
-  // secret: hold PAUSE + AIM together for 3 seconds to skip to the next world
+  // secret: hold PAUSE + SHOOT UP together for 3 seconds to skip to the next world
   let comboStart = 0, comboDone = false;
   setInterval(() => {
-    if (keys.KeyP && keys.ArrowUp && TOUCH) {
+    if (keys.KeyP && keys.TouchShootUp && TOUCH) {
       if (!comboStart) comboStart = performance.now();
       if (!comboDone && performance.now() - comboStart >= 3000) {
         comboDone = true;

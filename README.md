@@ -21,7 +21,7 @@ Double-click `PLAY.bat` (or open `web/index.html` in any modern browser). No ins
 | M | Mute |
 | F | Fullscreen |
 
-**Mobile / tablet:** the same page works on phones. On-screen controls appear automatically: a slide-able left/right pad, **A** (jump), **B** (shoot), **AIM** (hold with B to shoot up), pause and mute. Tap the screen to advance menus; on the hero select screen tap a hero, then tap again to start. Play in either orientation (landscape is roomier); the game auto-pauses when you switch apps. Add it to the home screen for a full-screen experience. Append `?touch=1` to force the touch controls on a desktop.
+**Mobile / tablet:** the same page works on phones. On-screen controls appear automatically: a slide-able left/right pad, **A** (jump), **B** (shoot), **SHOOT UP** (fires straight up, or diagonally while you're moving), pause and mute. Tap the screen to advance menus; on the hero select screen tap a hero, then tap again to start. Play in either orientation (landscape is roomier); the game auto-pauses when you switch apps. Add it to the home screen for a full-screen experience. Append `?touch=1` to force the touch controls on a desktop.
 
 Gamepad (first pad): D-pad/stick, A = jump, B/X = shoot, Start = confirm.
 

@@ -266,7 +266,7 @@ function drawEnding() {
 function drawPause() {
   g.fillStyle = '#000000c0'; g.fillRect(0, 0, 256, 240);
   Art.bigText(g, 'PAUSED', 128, 40, '#ffc000', 'center', 24);
-  const l = TOUCH ? [['LEFT PAD', 'MOVE'], ['A', 'JUMP'], ['B', 'SHOOT'], ['HOLD AIM + B', 'SHOOT UP']] : [['ARROWS / WASD', 'MOVE'], ['Z / SPACE', 'JUMP'], ['X / J / K', 'SHOOT'], ['UP + X', 'AIM UP'], ['P / ESC', 'PAUSE'], ['M', 'MUTE'], ['F', 'FULLSCREEN']];
+  const l = TOUCH ? [['LEFT PAD', 'MOVE'], ['A', 'JUMP'], ['B', 'SHOOT'], ['UP BUTTON', 'SHOOT UP']] : [['ARROWS / WASD', 'MOVE'], ['Z / SPACE', 'JUMP'], ['X / J / K', 'SHOOT'], ['UP + X', 'AIM UP'], ['P / ESC', 'PAUSE'], ['M', 'MUTE'], ['F', 'FULLSCREEN']];
   l.forEach((s, i) => { Art.text(g, s[0], 28, 92 + i * 12, '#ffc000'); Art.text(g, s[1], 148, 92 + i * 12, '#fff'); });
   Art.text(g, 'STOMP ENEMIES OR SHOOT THEM', 128, 186, '#8fe3ff', 'center', false);
   Art.text(g, 'FIND 3 QUEST SCROLLS PER WORLD', 128, 198, '#8fe3ff', 'center', false);
