@@ -207,9 +207,9 @@ function updPlayer() {
   // hazards
   const cc = Math.floor((p.x + p.w / 2) / 16);
   if (tile(cc, Math.floor((p.y + p.h - 5) / 16)) === T_LIQUID || p.y > 250) { killPlayer(); return; }
-  const hz = { x: 0, y: 0, w: 12, h: 8 };
+  const hz = { x: 0, y: 0, w: 10, h: 7 };
   for (let c = Math.floor(p.x / 16); c <= Math.floor((p.x + p.w) / 16); c++) for (let r = Math.floor(p.y / 16); r <= Math.floor((p.y + p.h) / 16); r++) {
-    if (tile(c, r) === T_SPIKE) { hz.x = c * 16 + 2; hz.y = r * 16 + 8; if (ov(p, hz)) { hurtPlayer(c * 16 + 8); if (!p.dead) p.vy = -4; } }
+    if (tile(c, r) === T_SPIKE) { hz.x = c * 16 + 3; hz.y = r * 16 + 9; if (ov(p, hz)) { hurtPlayer(c * 16 + 8); if (!p.dead) p.vy = -4; } }
   }
 }
 

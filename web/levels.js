@@ -110,7 +110,7 @@ function buildLevel(li) {
       flat(4);
     },
     gauntlet() { const w = ri(15, 18), s = flat(w); set(s + 5, g - 1, T_BLOCK); set(s + 11, g - 1, T_BLOCK); set(s + 11, g - 2, T_BLOCK); spawnGround(s, Math.min(4, 2 + Math.floor(diff * 3)), g, w); coins(s + 3, g - 3, 3); },
-    spikes() { const s = flat(3); const n = ri(2, 3), c0 = col; for (let i = 0; i < n; i++) { ground(col, g); set(col, g - 1, T_SPIKE); col++; } arc(c0 - 1, n + 2, g - 2); flat(4); },
+    spikes() { const s = flat(3); const n = 1, c0 = col; for (let i = 0; i < n; i++) { ground(col, g); set(col, g - 1, T_SPIKE); col++; } arc(c0 - 1, n + 2, g - 2); flat(4); },
     mover() { flat(3); const n = 8, c0 = col; gap(n); ents.push({ k: 'mp', x: c0 * 16 - 16, y: g * 16, min: c0 * 16 - 16, max: (c0 + n) * 16 - 16, vx: 0.6 }); coins(c0 + 2, g - 2, 4); flat(4); },
     turretNest() { const s = flat(10); const c0 = s + 7; set(c0, g - 1, T_BLOCK); set(c0 + 1, g - 1, T_BLOCK); enemy('turret', c0, g - 1, { dir: -1 }); coins(s + 1, g - 2, 4); },
     ceilingTar() { const s = flat(12); for (let i = 0; i < 2; i++) enemy('tar', s + 3 + i * 5, 3, { hang: true, hy: 16 }); coins(s + 2, g - 2, 5); },
