@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PETROFLOW QUEST - The Quest for the Golden Barrel</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0b12; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; }
+  #wrap { position: relative; }
+  canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #000; box-shadow: 0 0 0 6px #c01010, 0 0 0 10px #ffc000, 0 0 40px #000; }
+  #hint { position: fixed; bottom: 6px; left: 0; right: 0; text-align: center; color: #667; font: 11px monospace; }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="screen" width="256" height="240"></canvas></div>
+<div id="hint">ARROWS / WASD move &middot; Z / SPACE jump &middot; X / J / K shoot (UP to aim up) &middot; P pause &middot; M mute &middot; F fullscreen</div>
+<script src="font.js"></script>
+<script src="faces.js"></script>
+<script src="audio.js"></script>
+<script src="art.js"></script>
+<script src="levels.js"></script>
+<script src="bosses.js"></script>
+<script src="game.js"></script>
+<script src="screens.js"></script>
+<script>
+  function fit() {
+    const s = Math.max(1, Math.floor(Math.min(innerWidth / 256, (innerHeight - 24) / 240)));
+    const c = document.getElementById('screen');
+    c.style.width = 256 * s + 'px'; c.style.height = 240 * s + 'px';
+  }
+  addEventListener('resize', fit); fit();
+  addEventListener('keydown', e => { if (e.code === 'KeyF') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); } });
+</script>
+</body>
+</html>
