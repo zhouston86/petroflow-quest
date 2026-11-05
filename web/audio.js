@@ -25,6 +25,7 @@ const Sound = (() => {
       pulse[duty] = ctx.createPeriodicWave(real, imag);
     }
   }
+  const suspend = () => { if (ctx && ctx.state === 'running') ctx.suspend(); };
   const resume = () => { init(); if (ctx && ctx.state === 'suspended') ctx.resume(); };
   const hz = m => 440 * Math.pow(2, (m - 69) / 12);
 
@@ -244,5 +245,5 @@ const Sound = (() => {
       prog: [0, 0], lead: '5\' - 3\' - 1\' - 5 - | 3 - - - 1 - - -' }
   };
 
-  return { init, resume, play, stop, sfx, toggleMute, SONGS, parseLead, compile, BASS, ARP, DRUM, degMidi, isMuted: () => muted };
+  return { init, resume, suspend, play, stop, sfx, toggleMute, SONGS, parseLead, compile, BASS, ARP, DRUM, degMidi, isMuted: () => muted };
 })();

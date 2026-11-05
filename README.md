@@ -21,6 +21,8 @@ Double-click `PLAY.bat` (or open `web/index.html` in any modern browser). No ins
 | M | Mute |
 | F | Fullscreen |
 
+**Mobile / tablet:** the same page works on phones. On-screen controls appear automatically: a slide-able left/right pad, **A** (jump), **B** (shoot), **AIM** (hold with B to shoot up), pause and mute. Tap the screen to advance menus; on the hero select screen tap a hero, then tap again to start. Play in either orientation (landscape is roomier); the game auto-pauses when you switch apps. Add it to the home screen for a full-screen experience. Append `?touch=1` to force the touch controls on a desktop.
+
 Gamepad (first pad): D-pad/stick, A = jump, B/X = shoot, Start = confirm.
 
 ## The team
@@ -52,7 +54,7 @@ Standard MIDI versions are in `soundtrack/` (regenerate with `node tools/export_
 
 ## Dev notes
 
-* `web/` - the whole game (plain JS, no build step). `faces.js` holds the hand-pixelled heads.
+* `web/` - the whole game (plain JS, no build step). `touch.js` is the mobile layer. `faces.js` holds the hand-pixelled heads.
 * `assets/` - source headshots, logo and the embedded font (Press Start 2P, SIL OFL). `python tools/make_font.py` rebuilds `web/font.js`.
 * `tools/bot.js` - an autoplay bot used to check every world is traversable: open the game with
   `?level=1&god=1`, inject the script, then call `runBot(levelIndex, maxFrames)` in the console.

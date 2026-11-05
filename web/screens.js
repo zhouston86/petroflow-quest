@@ -5,6 +5,7 @@ const HERO_QUOTES = [
 ];
 const LEVEL_TAG = ['GULF', 'NORTH', 'AFRICA', 'ARCTIC', 'PLANT', 'WELL'];
 const DEBUG = {};
+const PROMPT = () => TOUCH ? 'TAP TO CONTINUE' : 'PRESS ENTER';
 let audioReady = false, clearInfo = null, titleCh = 0, sel = 0, typed = 0, storyPage = 0;
 
 const STORY = [
@@ -82,7 +83,7 @@ function drawTitle() {
   Art.text(g, 'FLOW ASSURANCE + SIMULATION', 128, 142, '#c0c0d0', 'center', false);
   const chs = ['zach', 'geir', 'mack'];
   chs.forEach((c, i) => { const bob = Math.floor((stT + i * 14) / 14) % 2; Art.drawPlayer(g, c, 78 + i * 38, 160 - bob, 1, 'idle', stT, {}); });
-  if (blink(30)) Art.text(g, 'PRESS ENTER', 128, 205, '#fff', 'center');
+  if (blink(30)) Art.text(g, PROMPT(), 128, 205, '#fff', 'center');
   Art.text(g, 'PETROFLOW, INC.  PETROFLOW.COM', 128, 228, '#ffc000', 'center');
 }
 
@@ -106,7 +107,7 @@ function drawStory() {
     Art.text(g, s, 128, 56 + i * 16, i === 0 ? '#ffc000' : '#fff', 'center');
   });
   if (storyPage === 2) { ['zach', 'geir', 'mack'].forEach((c, i) => g.drawImage(Art.heads[c], 0, 0, 16, 20, 88 + i * 30, 150, 24, 30)); }
-  if (blink(30)) Art.text(g, 'PRESS ENTER', 128, 208, '#fff', 'center');
+  if (blink(30)) Art.text(g, PROMPT(), 128, 208, '#fff', 'center');
   Art.text(g, 'PAGE ' + (storyPage + 1) + '/' + STORY.length, 250, 228, '#888', 'right');
 }
 
@@ -135,7 +136,7 @@ function drawSelect() {
   panel(8, 158, 240, 58);
   Art.text(g, C.tag, 128, 164, '#5ce430', 'center');
   C.bio.forEach((l, i) => Art.text(g, l, 128, 178 + i * 10, '#fff', 'center', false));
-  Art.text(g, '< >  CHOOSE     ENTER  GO', 128, 224, blink(30) ? '#fff' : '#889', 'center');
+  Art.text(g, (TOUCH ? 'TAP A HERO, TAP AGAIN: GO' : '< >  CHOOSE     ENTER  GO'), 128, 224, blink(30) ? '#fff' : '#889', 'center');
 }
 
 // ---------- level intro ----------
@@ -157,7 +158,7 @@ function drawIntro() {
   const q = CHARS[G.ch].name + ': "' + HERO_QUOTES[G.level] + '"';
   wrap(q, 24).forEach((l, i) => Art.text(g, l, 48, 178 + i * 11, '#fff', 'left'));
   Art.text(g, 'BOSS: ' + L.bossName, 128, 212, '#ff8080', 'center');
-  if (stT > 25 && blink(30)) Art.text(g, 'PRESS ENTER', 128, 226, '#fff', 'center');
+  if (stT > 25 && blink(30)) Art.text(g, PROMPT(), 128, 226, '#fff', 'center');
 }
 
 // ---------- level clear ----------
@@ -192,7 +193,7 @@ function drawClear() {
     Art.R(g, '#000', 62 + i * 22, 198, 16, 18); Art.R(g, have ? '#ffc000' : '#2a2a3a', 63 + i * 22, 199, 14, 16);
     if (have) { Art.R(g, '#c88a00', 63 + i * 22, 203, 14, 2); Art.R(g, '#c88a00', 63 + i * 22, 210, 14, 2); Art.logo(g, 70 + i * 22, 207, 3); }
   }
-  if (stT > 120 && blink(30)) Art.text(g, 'PRESS ENTER', 128, 224, '#fff', 'center');
+  if (stT > 120 && blink(30)) Art.text(g, PROMPT(), 128, 224, '#fff', 'center');
 }
 
 // ---------- game over ----------
@@ -206,8 +207,8 @@ function drawGameOver() {
   Art.text(g, 'THE FLOW STOPPED...', 128, 104, '#fff', 'center');
   Art.text(g, 'BUT PETROFLOW NEVER QUITS!', 128, 120, '#ffc000', 'center');
   g.drawImage(Art.heads[G.ch], 0, 0, 16, 20, 112, 140, 32, 40);
-  if (blink(30)) Art.text(g, 'ENTER: CONTINUE WORLD ' + (G.level + 1), 128, 196, '#fff', 'center');
-  Art.text(g, 'ESC: TITLE', 128, 212, '#889', 'center');
+  if (blink(30)) Art.text(g, (TOUCH ? 'TAP: CONTINUE WORLD ' : 'ENTER: CONTINUE WORLD ') + (G.level + 1), 128, 196, '#fff', 'center');
+  if (!TOUCH) Art.text(g, 'ESC: TITLE', 128, 212, '#889', 'center');
 }
 
 // ---------- ending ----------
@@ -258,18 +259,18 @@ function drawEnding() {
     }
     y += ln[0] === 'head' ? 42 : (ln[0] === 'logo' ? 34 : (ln[0] === 'big' ? 22 : 14));
   }
-  if (y < 120) { Art.bigText(g, 'THE END', 128, 100, '#ff4030', 'center', 24); if (blink(30)) Art.text(g, 'PRESS ENTER', 128, 140, '#fff', 'center'); }
+  if (y < 120) { Art.bigText(g, 'THE END', 128, 100, '#ff4030', 'center', 24); if (blink(30)) Art.text(g, PROMPT(), 128, 140, '#fff', 'center'); }
 }
 
 // ---------- pause ----------
 function drawPause() {
   g.fillStyle = '#000000c0'; g.fillRect(0, 0, 256, 240);
   Art.bigText(g, 'PAUSED', 128, 40, '#ffc000', 'center', 24);
-  const l = [['ARROWS / WASD', 'MOVE'], ['Z / SPACE', 'JUMP'], ['X / J / K', 'SHOOT'], ['UP + X', 'AIM UP'], ['P / ESC', 'PAUSE'], ['M', 'MUTE'], ['F', 'FULLSCREEN']];
+  const l = TOUCH ? [['LEFT PAD', 'MOVE'], ['A', 'JUMP'], ['B', 'SHOOT'], ['HOLD AIM + B', 'SHOOT UP']] : [['ARROWS / WASD', 'MOVE'], ['Z / SPACE', 'JUMP'], ['X / J / K', 'SHOOT'], ['UP + X', 'AIM UP'], ['P / ESC', 'PAUSE'], ['M', 'MUTE'], ['F', 'FULLSCREEN']];
   l.forEach((s, i) => { Art.text(g, s[0], 28, 92 + i * 12, '#ffc000'); Art.text(g, s[1], 148, 92 + i * 12, '#fff'); });
   Art.text(g, 'STOMP ENEMIES OR SHOOT THEM', 128, 186, '#8fe3ff', 'center', false);
   Art.text(g, 'FIND 3 QUEST SCROLLS PER WORLD', 128, 198, '#8fe3ff', 'center', false);
-  if (blink(30)) Art.text(g, 'PRESS P TO RESUME', 128, 218, '#fff', 'center');
+  if (blink(30)) Art.text(g, (TOUCH ? 'TAP TO RESUME' : 'PRESS P TO RESUME'), 128, 218, '#fff', 'center');
 }
 
 // ---------- main loop ----------
@@ -325,7 +326,7 @@ async function boot() {
   if (q.get('level')) { G.level = Math.max(0, Math.min(5, parseInt(q.get('level'), 10) - 1)); startLevel(G.level); state = 'play'; if (q.get('boss')) { pl.x = lv.arenaCol * 16 + 20; cam = lv.arenaCol * 16 - 100; } }
   else setState('title');
   const go = () => { audioReady = true; Sound.resume(); };
-  addEventListener('keydown', go); addEventListener('pointerdown', go);
+  addEventListener('keydown', go); addEventListener('pointerdown', go); addEventListener('touchend', go); addEventListener('click', go);
   last = performance.now();
   requestAnimationFrame(loop);
 }
