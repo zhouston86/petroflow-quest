@@ -286,6 +286,13 @@ function secretWarp() {
   }
 }
 
+function warpNext() {
+  paused = false;
+  if (G.level >= LEVELS.length - 1) { setState('ending'); return; }
+  G.level++; G.scoreAtLevelStart = G.score;
+  startLevel(G.level); setState('play'); Sound.sfx('start');
+}
+
 function step() {
   pollPad();
   secretWarp();

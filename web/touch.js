@@ -71,6 +71,18 @@ let TOUCH = matchMedia('(pointer: coarse)').matches || /[?&]touch=1/.test(locati
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('gesturestart', e => e.preventDefault());
 
+  // secret: hold PAUSE + AIM together for 3 seconds to skip to the next world
+  let comboStart = 0, comboDone = false;
+  setInterval(() => {
+    if (keys.KeyP && keys.ArrowUp && TOUCH) {
+      if (!comboStart) comboStart = performance.now();
+      if (!comboDone && performance.now() - comboStart >= 3000) {
+        comboDone = true;
+        if (state === 'play') { warpNext(); if (navigator.vibrate) navigator.vibrate(80); }
+      }
+    } else { comboStart = 0; comboDone = false; }
+  }, 100);
+
   // auto-pause and silence when the tab or app goes to the background
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { if (state === 'play') paused = true; Sound.suspend(); }
