@@ -274,8 +274,21 @@ function drawPause() {
 }
 
 // ---------- main loop ----------
+// secret: number keys 1-6 jump straight to that world
+function secretWarp() {
+  for (let n = 1; n <= LEVELS.length; n++) {
+    if (!hit(['Digit' + n, 'Numpad' + n])) continue;
+    if (state === 'boot') return;
+    if (G.lives <= 0) G.lives = 3;
+    paused = false; G.level = n - 1; G.scoreAtLevelStart = G.score;
+    startLevel(G.level); setState('play'); Sound.sfx('start');
+    return;
+  }
+}
+
 function step() {
   pollPad();
+  secretWarp();
   if (hit(['KeyM'])) Sound.toggleMute();
   stT++;
   if (state === 'play') {

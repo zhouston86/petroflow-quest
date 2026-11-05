@@ -63,7 +63,7 @@ function buildLevel(li) {
   const set = (c, r, t) => { if (c >= 0 && c < MAXC && r >= 0 && r < ROWS) tiles[r * MAXC + c] = t; };
   let col = 0, g = 12, signIdx = li * 3;
   const diff = li / 5;
-  const target = 570 + li * 10;
+  const target = 342 + li * 6;
 
   const ground = (c, gr) => { for (let r = gr; r < ROWS; r++) set(c, r, T_GROUND); };
   const flat = n => { const s = col; for (let i = 0; i < n; i++) ground(col++, g); return s; };

@@ -6,7 +6,7 @@ Cool Spot / Avoid the Noid / Burger King-games-style advertisement for Petroflow
 
 Evil **Dr. Downtime** has clogged the world's pipelines. Fight through six worlds of flow-assurance villains
 (hydrates, wax, scale, slugs, asphaltene), beat a boss in each, and recover the pieces of the Golden Barrel.
-Expect roughly **20-30 minutes** for a first playthrough.
+Expect roughly **15-20 minutes** for a first playthrough.
 
 ## Play
 
